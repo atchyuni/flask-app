@@ -24,4 +24,3 @@ def submit():
 def query():
     q = request.args.get("q")
     return process_query(q)
-    
