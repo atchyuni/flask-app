@@ -12,8 +12,6 @@ jobs:
           python-version: 3.12
       - name: Install flake8
         run: pip install flake8
-      - name: Install requirements
-        run: pip install -r requirements.txt
       - name: Run flake8
         run: flake8 .
   python-tests:
@@ -28,12 +26,12 @@ jobs:
           python-version: 3.12
       - name: Install pytest
         run: pip install pytest
+      - name: Run pytest
+        run: pytest
       - name: Install flask
         run: pip install flask
       - name: Run flask
-        run: flask run
-      - name: Run pytest
-        run: pytest
+        run: flask run &
   deploy-to-impaas:
     needs: python-tests
     runs-on: ubuntu-latest
