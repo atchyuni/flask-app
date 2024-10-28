@@ -28,8 +28,10 @@ jobs:
           python-version: 3.12
       - name: Install pytest
         run: pip install pytest
+      - name: Install flask
+        run: pip install flask
       - name: Run flask
-        run: flask
+        run: flask run
       - name: Run pytest
         run: pytest
   deploy-to-impaas:
