@@ -21,3 +21,11 @@ def test_addition_returns_sum():
 def test_returns_greatest_num():
     assert process_query("Which of the following numbers is the largest: 71, "
                          "39, 38") == "71"
+
+
+def test_minus():
+    assert process_query("What is 99 minus 75?") == "24"
+
+
+def test_compute_product():
+    assert process_query("What is 53 multiplied by 19?") == "1007"

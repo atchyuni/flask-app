@@ -11,6 +11,14 @@ def process_query(input):
         parts = input.split()
         total = int(parts[2]) + int(parts[4].replace("?", ""))
         return str(total)
+    if " minus " in input:
+        parts = input.split()
+        total = int(parts[2]) - int(parts[4].replace("?", ""))
+        return str(total)
+    if " multiplied by " in input:
+        parts = input.split()
+        total = int(parts[2]) * int(parts[5].replace("?", ""))
+        return str(total)
     if "Which of the following numbers is the largest: " in input:
         parts = input.split()
         num1 = int(parts[8].replace(",", ""))
