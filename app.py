@@ -7,6 +7,10 @@ def process_query(input):
         return "Dinosaurs ruled the Earth 200 million years ago"
     if input == "What is your name?":
         return "ajc24"
+    if " plus " in input:
+        parts = input.split()
+        total = int(parts[2]) + int(parts[4].replace("?", ""))
+        return str(total) 
     return "Unknown"
 
 
