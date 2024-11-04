@@ -44,3 +44,14 @@ def submit():
 def query():
     q = request.args.get("q")
     return process_query(q)
+
+
+@app.route("/github")
+def get_githubname():
+    return render_template("github_index.html")
+
+
+@app.route("/github_submit", methods=["POST"])
+def github_submit():
+    input_githubname = request.form.get("githubname")
+    return render_template("github_submit.html", name=input_githubname)
