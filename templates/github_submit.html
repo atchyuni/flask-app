@@ -1,5 +1,10 @@
 <html lang="en">
         <div class="header">
-                <h1>Hello {{ name }}</h1>
+                <h1>Repos of {{ name }}</h1>
+		<ul>
+			{% for repo in repos %}
+			<li>{{ repo }}</li>
+			{% endfor %}
+		</ul>
         </div>
 </html> 
