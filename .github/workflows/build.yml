@@ -30,6 +30,8 @@ jobs:
         run: pip install flask      
       - name: Run flask
         run: flask run &
+      - name: Install requests
+        run: pip install requests     
       - name: Install pytest
         run: pip install pytest
       - name: Run pytest
