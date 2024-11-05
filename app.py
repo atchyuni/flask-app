@@ -53,7 +53,8 @@ def get_githubname():
 
 
 def get_commit_info(repo_name):
-    commit_response = requests.get(f"https://api.github.com/repos/{repo_name}/commits")
+    url = f"https://api.github.com/repos/{repo_name}/commits"
+    commit_response = requests.get(url)
 
     if commit_response.status_code == 200:
         commits = commit_response.json()
@@ -84,9 +85,11 @@ def get_user_info(username):
 @app.route("/github_submit", methods=["POST"])
 def github_submit():
     input_githubname = request.form.get("githubname")
-    response = requests.get(f"https://api.github.com/users/{input_githubname}/repos")
+    url = f"https://api.github.com/users/{input_githubname}/repos"
+    response = requests.get(url)
     
-    bio, num_public_repos, account_created, num_followers, num_following = get_user_info(input_githubname)
+    bio, num_public_repos, account_created, num_followers, num_following = \
+        get_user_info(input_githubname)
     user_info = {
         "bio": bio,
         "num_public_repos": num_public_repos,
@@ -98,7 +101,8 @@ def github_submit():
     repos_list = []
 
     if response.status_code == 200:
-        repos = response.json() # data returned is a list of ‘repository’ entities
+        repos = response.json()
+        # data returned is a list of ‘repository’ entities
         for repo in repos:
             # repos_list.append(repo["full_name"])
             hash, date, author, message = get_commit_info(repo["full_name"])
@@ -112,4 +116,7 @@ def github_submit():
             }
             repos_list.append(repo_info)
 
-    return render_template("github_submit.html", name=input_githubname, repos=repos_list, user=user_info)
+    return render_template(
+        "github_submit.html", name=input_githubname,
+        repos=repos_list, user=user_info
+    )
