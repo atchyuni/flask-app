@@ -87,7 +87,7 @@ def github_submit():
     input_githubname = request.form.get("githubname")
     url = f"https://api.github.com/users/{input_githubname}/repos"
     response = requests.get(url)
-    
+
     bio, num_public_repos, account_created, num_followers, num_following = \
         get_user_info(input_githubname)
     user_info = {
