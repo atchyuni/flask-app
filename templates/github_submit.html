@@ -1,10 +1,54 @@
 <html lang="en">
-        <div class="header">
-                <h1>Repos of {{ name }}</h1>
-		<ul>
-			{% for repo in repos %}
-			<li>{{ repo }}</li>
-			{% endfor %}
-		</ul>
-        </div>
-</html> 
+<head>
+    <style>
+        table {
+            width: 75%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+		ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>{{ name }}'s Projects</h1>
+        <h3>
+            Bio: {{ user.bio }} <br>
+            Public Repositories: {{ user.num_public_repos }} <br>
+            Account Created On: {{ user.account_created }} <br>
+            Followers: {{ user.num_followers }} <br>
+            Following: {{ user.num_following }} <br><br>
+        </h3>
+        <ul>
+            {% for repo in repos %}
+            <li>
+                <strong>Repository:</strong> {{ repo.name }}<br>
+                Created on {{ repo.repo_created }}
+                <table>
+                    <tr>
+                        <th>Latest Hash</th>
+                        <th>Date</th>
+                        <th>Author</th>
+                        <th>Message</th>
+                    </tr>
+                    <tr>
+                        <td>{{ repo.hash }}</td>
+                        <td>{{ repo.date }}</td>
+                        <td>{{ repo.author }}</td>
+                        <td>{{ repo.message }}</td>
+                    </tr>
+                </table><br>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
